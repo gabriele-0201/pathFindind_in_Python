@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DdijkstraModule_EXPORTS
 
-CXX_INCLUDES = -isystem /home/gabriele/Documents/code/pathFindind_in_Python/Dijkstra/pybind11/include -isystem /usr/include/python3.9
+CXX_INCLUDES = -isystem /home/gabriele/Documents/Code/pathFindind_in_Python/Dijkstra/pybind11/include -isystem /usr/include/python3.9
 
 CXX_FLAGS = -fPIC -fvisibility=hidden -flto -fno-fat-lto-objects
 

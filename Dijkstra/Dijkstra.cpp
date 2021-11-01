@@ -32,9 +32,13 @@ class NodeD {
 constexpr int raws = 15;
 constexpr int columns = 30;
 
+constexpr int wall = 2;
+constexpr int endCode = 3;
+
 void removeUnvisited(vector<NodeD*> &unvisited, NodeD* node);
 NodeD* minDistance(vector<NodeD*> &unvisited);
 bool alreadyVisited(vector<NodeD*> &visited, NodeD* node);
+vector<int> findEnd(vector<vector<int>> map);
 
 vector<vector<int>> dijkstra(vector<vector<int>> map) {
     //Initialize Graph
@@ -43,7 +47,7 @@ vector<vector<int>> dijkstra(vector<vector<int>> map) {
 
     for(int i = 0; i < raws; i++) {
         for(int j = 0; j < columns; j++) {
-            if(map[i][j] != 1)
+            if(map[i][j] != wall)
                 nodes[i][j] = NodeD(i, j);
         }
     }
@@ -51,32 +55,33 @@ vector<vector<int>> dijkstra(vector<vector<int>> map) {
     for(int i = 0; i < raws; i++) {
         for(int j = 0; j < columns; j++) {
             if(i > 0)
-                    if(map[i][j] != 1)
+                    if(map[i][j] != wall)
                         nodes[i][j].addAttachedNode(&nodes[i - 1][j]);
             if(i < (raws - 1))
-                    if(map[i][j] != 1)
+                    if(map[i][j] != wall)
                         nodes[i][j].addAttachedNode(&nodes[i + 1][j]);
 
             if(j > 0)
-                    if(map[i][j] != 1)
+                    if(map[i][j] != wall)
                         nodes[i][j].addAttachedNode(&nodes[i][j - 1]);
             if(j < (columns - 1))
-                    if(map[i][j] != 1)
+                    if(map[i][j] != wall)
                         nodes[i][j].addAttachedNode(&nodes[i][j + 1]);
         }
     }
 
     //Algorithm
 
-    NodeD* start = &nodes[0][0];
-    NodeD* end = &nodes[raws - 1][columns - 1];
+    //NodeD* start = &nodes[0][0];
+    vector<int> posEnd = findEnd(map);
+    NodeD* end = &nodes[posEnd[0]][posEnd[1]];
 
     vector<NodeD*> visited;
     vector<NodeD*> unvisited;
 
     for(int i = 0; i < raws; i++) {
         for(int j = 0; j < columns; j++) {
-            if(map[i][j] != 1)
+            if(map[i][j] != wall)
                 unvisited.push_back(&nodes[i][j]);
         }
     }
@@ -108,14 +113,13 @@ vector<vector<int>> dijkstra(vector<vector<int>> map) {
             selected = minDistance(unvisited);
     }
 
-    NodeD* path = start;
 
     vector<vector<int>> lengthMap;
     
     for(int i = 0; i < raws; i++) {
         vector<int> lineVec;
         for(int j = 0; j < columns; j++) { 
-            if(map[i][j] != 1)
+            if(map[i][j] != wall)
                 lineVec.push_back(nodes[i][j].getDistance());
             else
                 lineVec.push_back(-1);
@@ -124,6 +128,16 @@ vector<vector<int>> dijkstra(vector<vector<int>> map) {
     }
 
    return lengthMap;
+}
+
+vector<int> findEnd(vector<vector<int>> map) {
+    for(int i = 0; i < raws; i++) {
+        for(int j = 0; j < columns; j++) { 
+            if(map[i][j] == endCode)
+                return {i, j};
+        }
+    }
+    return {-1, -1};
 }
 
 void removeUnvisited(vector<NodeD*> &unvisited, NodeD* node) {
