@@ -203,6 +203,6 @@ void NodeD::setPrevNode(NodeD* pNode) {
 
 NodeD* NodeD::getPrevNode() {return prevNode; }
 
-PYBIND11_MODULE(FindPathDijkstra, handle) {
+PYBIND11_MODULE(dijkstraModule, handle) {
     handle.def("dijkstra", &dijkstra);
 }

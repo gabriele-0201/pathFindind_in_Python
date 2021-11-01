@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -flto -shared  -o dijkstraModule.cpython-39-x86_64-linux-gnu.so CMakeFiles/dijkstraModule.dir/Dijkstra.cpp.o 
