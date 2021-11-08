@@ -17,7 +17,7 @@ CMakeFiles/dijkstraModule.dir/Dijkstra.cpp.o
  ../pybind11/include/pybind11/pybind11.h
  ../pybind11/include/pybind11/pytypes.h
  ../pybind11/include/pybind11/stl.h
- /home/gabriele/Documents/code/pathFindind_in_Python/Dijkstra/Dijkstra.cpp
+ /home/gabriele/Documents/Code/pathFindind_in_Python/Dijkstra/Dijkstra.cpp
  /usr/include/python3.9/Python.h
  /usr/include/python3.9/abstract.h
  /usr/include/python3.9/bltinmodule.h

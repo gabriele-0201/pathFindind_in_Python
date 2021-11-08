@@ -1,4 +1,4 @@
-# Install script for directory: /home/gabriele/Documents/code/pathFindind_in_Python/Dijkstra/pybind11
+# Install script for directory: /home/gabriele/Documents/Code/pathFindind_in_Python/Dijkstra/pybind11
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
