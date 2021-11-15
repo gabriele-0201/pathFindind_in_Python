@@ -1,13 +1,17 @@
 #include<iostream>
 #include<vector>
+#include<list>
 
 using namespace std;
 
 #define raws 15
 #define columns 30
+//UPDATE WITH RIGHT VALUES
 #define end 3
+#define wall 2
 #define start 1
-#define wall 2 
+#define empty 0
+#define ball 4
 
 vector<int> findEnd(vector<vector<int>> map) {
     for(int i = 0; i < raws; i++) {
@@ -38,14 +42,52 @@ int main(void) {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
 
-    vector<vector<int>>
+    vector<vector<bool>> mapVis;
 
-    bool mapVis[15][30] = {false};
+    for(int i=0; i < raws; i++) {
+        mapVis.push_back(vector<bool> ());
+        for(int j=0; j < raws; j++) {
+            mapVis[i].push_back(false);
+        }
+    }
 
-    vector<int> endPosition = findEnd(map);
+    list<vector<int>> haveTo;
+    haveTo.push_front(findEnd(map));
+    mapVis[haveTo.front()[0]][haveTo.front()[1]] = true;
 
-    while(
+    while(haveTo.size() != 0) {
+        vector<int> now = haveTo.front();
+        haveTo.pop_front();
 
-    )
+        //HAVE TO ADD THE CHEC TO BOUNDS
+        if(map[now[0] + 1][now[1]] != wall)  {
+            haveTo.push_back(vector<int> {now[0] + 1, now[1]});
+            mapVis[now[0] + 1][now[1]] = true;
+        }
+
+        if(map[now[0]][now[1] + 1] != wall)  {
+            haveTo.push_back(vector<int> {now[0], now[1] + 1});
+            mapVis[now[0]][now[1] + 1] = true;
+        }
+
+        if(map[now[0] - 1][now[1]] != wall)  {
+            haveTo.push_back(vector<int> {now[0] - 1, now[1]});
+            mapVis[now[0] - 1][now[1]] = true;
+        }
+
+        if(map[now[0]][now[1] - 1] != wall)  {
+            haveTo.push_back(vector<int> {now[0], now[1] - 1});
+            mapVis[now[0]][now[1] - 1] = true;
+        }
+    }
+
+    for(int i=0; i < raws; i++) {
+        cout <<endl;
+        for(int j=0; j < raws; j++) {
+            cout << mapVis[i][j] << endl;
+        }
+    }
+
+    //WITH THIS MAP NOW I CAN CREATE THE GRAPH FOR DIJKISTRA
 
 }
