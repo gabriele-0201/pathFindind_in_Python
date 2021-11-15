@@ -1,0 +1,33 @@
+queue haveTo;
+
+selected <- endNode;
+selected.visited = true;
+
+haveTo.add(selected)
+
+while(!haveTo.isEmpty()) {
+
+    foreach w in selected.attachedNodes():
+        if(!w.isVisited()) 
+            haveTo.add(w)
+
+    selected.visited = true;
+    selected = haveTo.pop_front()
+}
+
+
+// OR WITHOUT USING A GRAPH
+
+/*
+Start memorizing the end and start (in Pairs)
+
+Starting from the end,
+
+check if the 4 nearest node is 0
+
+if yes then visit them and add to the haveToVisit
+
+else nothing
+
+now visited all the nearest continue the cicle util the haveToVisit priorityQueue is finisched
+*/
