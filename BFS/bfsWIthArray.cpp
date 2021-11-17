@@ -6,7 +6,6 @@ using namespace std;
 
 #define raws 15
 #define columns 30
-//UPDATE WITH RIGHT VALUES
 #define end 3
 #define wall 2
 #define start 1
@@ -59,7 +58,6 @@ int main(void) {
         vector<int> now = haveTo.front();
         haveTo.pop_front();
 
-        //HAVE TO ADD THE CHEC TO BOUNDS
         if(now[0] + 1 < raws && map[now[0] + 1][now[1]] != wall && !mapVis[now[0] + 1][now[1]])  {
             haveTo.push_back(vector<int> {now[0] + 1, now[1]});
             mapVis[now[0] + 1][now[1]] = true;
